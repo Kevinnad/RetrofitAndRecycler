@@ -4,25 +4,30 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.techmah.mapandretrofit.model.LocationListRequest
 import com.techmah.mapandretrofit.model.LocationListResponse
 import com.techmah.mapandretrofit.network.ResultWrapper
 import com.techmah.mapandretrofit.repo.ListRepo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ListFragmentViewModel @ViewModelInject constructor(private val listRepo: ListRepo): ViewModel(){
+class ListFragmentViewModel @ViewModelInject constructor(val listRepo: ListRepo): ViewModel(){
 
-    val locationListRequest = LocationListRequest("VI020PE0016","All","Employee","2020-07-25")
 
     val locationResponseData = MutableLiveData<LocationListResponse>()
     val errorValue = MutableLiveData<String>()
 
+    val params = HashMap<String,String>()
+
     fun fetchLocationList(){
+
+        params.put("user_employeid","VI020PE0016")
+        params.put("status","All")
+        params.put("appointment_type","Employee")
+        params.put("month","2020-07-25")
 
         viewModelScope.launch(Dispatchers.Default) {
 
-            val locationListResponse = listRepo.fetchLocationList(locationListRequest)
+            val locationListResponse = listRepo.fetchLocationList(params)
 
             when(locationListResponse){
 

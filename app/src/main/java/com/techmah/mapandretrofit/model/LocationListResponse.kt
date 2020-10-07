@@ -8,5 +8,8 @@ data class Unassigned(
     val Land_Mark : String,
     val City : String,
     val State : String,
-    val PIN : String
+    val PIN : String,
+    val Institution_Name : String,
+    val POC_Name : String
+
 )

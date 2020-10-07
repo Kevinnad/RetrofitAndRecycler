@@ -12,7 +12,7 @@
         tools:layout="@layout/location_list_fragment_view" >
 
         <action
-            android:id="@+id/action_login_to_forgotPasswordFragment"
+            android:id="@+id/action_map_fragment"
             app:destination="@id/map_view_fragment"
             app:enterAnim="@anim/slide_in"
             app:exitAnim="@anim/slide_out"
